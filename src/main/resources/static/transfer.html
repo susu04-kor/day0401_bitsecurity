@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#btnOk").click(function(){
+		var t = $("#f").serialize();
+		$.ajax("transfer", //"transfer는 accountController에 getMapping의 괄호"//
+				{data: t, success:function(data){
+					alert(data);
+		}})
+	})
+})
+	//db에 반영이 안 됨.....
+</script>
+</head>
+<body>
+	<h2>계좌이체</h2>
+	<form id="f">
+		돈 보내는 사람: <input type="text" name="from"><br>
+		돈 받는 사람: <input type="text" name="to"><br>
+		금액: <input type="number" name="amount"><br>
+	</form>
+	<button id="btnOk">이체</button>
+</body>
+</html>

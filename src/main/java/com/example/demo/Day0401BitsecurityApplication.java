@@ -3,18 +3,21 @@ package com.example.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.demo.db.DBManager;
 import com.example.demo.vo.MemberVo;
 
+@Configuration			//bean이 있어서! = 근데 bean이 "나 객체로 써봐"하는 애 = bean 가진 애는 "나 객체 제공자야"
 @SpringBootApplication
 public class Day0401BitsecurityApplication {
 
 	//패스워드 암호화를 위한 객체를 생성해요	//PasswordEncoder - 인터페이스
 	@Bean   //어노테이션
 	public PasswordEncoder passwordEncoder() {
+		System.out.println("패스워드 인코딩 객체 생성됨");
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		//패스워드를 생성해주는 클래스 - PasswordEncoderFactories
 		//패스워드를 암호화해주는 객체 제공 - createDelegatingPasswordEncoder()
@@ -29,7 +32,6 @@ public class Day0401BitsecurityApplication {
 		//그런데 이렇게 암호를 쌩으로 넣으면 DB에 안 들어감
 		//암호화!  - 위에 만들어놓은 passwordEncoder()메소드 호출!
 		
-	
 		SpringApplication.run(Day0401BitsecurityApplication.class, args);
 	}
 }
